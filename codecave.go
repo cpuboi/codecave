@@ -13,7 +13,7 @@ var Version = "development"
 func getArgs() (string, string, string, bool, bool, bool) {
 	var inputFile = flag.String("f", "./example_input_file.bin", "Input file")
 	var outputFile = flag.String("o", "./example_output_file.bin", "Output file")
-	var doEncodeMessage = flag.String("e", "", "Encode message into file")
+	var doEncodeMessage = flag.String("e", "", "Encode message into file, provide message")
 	var doDecode = flag.Bool("d", false, "Decode message from file")
 	var verbose = flag.Bool("v", false, "Verbose output")
 	var tryOut = flag.Bool("t", false, "Test if file has code cave, needs to be combined with -e")

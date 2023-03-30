@@ -144,9 +144,9 @@ func EncodeMessage(inputFile string, outputFile string, inputMessage string, byt
 
 	caveSlice := FindCaves(inputFile, len(hiddenMessage))
 	if len(caveSlice) == 0 {
-		if verbose {
-			fmt.Println(err.Error())
-		}
+
+		fmt.Fprintf(os.Stderr, "Error: No cave found in file\n")
+		os.Exit(1)
 
 	} else {
 		if printOutput {
