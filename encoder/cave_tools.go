@@ -2,8 +2,10 @@ package encoder
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
+	"path"
 )
 
 type caveStruct struct {
@@ -19,7 +21,6 @@ func FindCaves(filePath string, minCaveSize int) []caveStruct {
 		log.Fatal(err)
 	}
 	defer openFile.Close()
-	//openFile.Seek(int64(50), 0) // Skip 50 bytes since 48 bytes in the beginning of the files create the matching pattern hash
 
 	scanner := bufio.NewScanner(openFile)
 	scanner.Split(bufio.ScanBytes)
@@ -54,4 +55,19 @@ func FindCaves(filePath string, minCaveSize int) []caveStruct {
 		}
 	}
 	return caveSlice
+}
+
+/*
+Print and return all found codecaves as CSV file in format:
+filename,size,start,end
+*/
+func CaveSliceParser(filePath string, caveSlice []caveStruct) {
+	fileName := path.Base(filePath)
+	if len(caveSlice) == 0 {
+		fmt.Printf("%s,%d,%d,%d\n", fileName, 0, 0, 0)
+	} else {
+		for _, cave := range caveSlice {
+			fmt.Printf("%s,%d,%d,%d\n", fileName, (cave.end - cave.start), cave.start, cave.end)
+		}
+	}
 }
