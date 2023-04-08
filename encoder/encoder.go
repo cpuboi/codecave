@@ -153,8 +153,9 @@ func EncodeMessage(inputFile string, outputFile string, inputMessage string, byt
 			for _, item := range caveSlice {
 				if item.start < 50 {
 					// Dont disturb the first 48 bytes of the file that creates the matching hash pattern
-					fmt.Fprintf(os.Stderr, " Cave in first 48 bytes, continuing search \n")
-
+					if verbose {
+						fmt.Fprintf(os.Stderr, " Cave in first 48 bytes, continuing search \n")
+					}
 					continue
 				}
 				if len(hiddenMessage) > (item.end - item.start) {

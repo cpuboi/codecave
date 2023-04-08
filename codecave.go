@@ -58,6 +58,6 @@ func main() {
 		}
 		encoder.DecodeMessage(inputFile, maxMessageSize, byteLengthToHash, verbose)
 	} else {
-		fmt.Println("Ok? ")
+		fmt.Println("How did you manage to get this message?")
 	}
 }
